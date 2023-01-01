@@ -1,3 +1,5 @@
+from typing import Union
+
 import strawberry
 
 from ...deps import GenieInfo
@@ -27,7 +29,7 @@ class Response:
     total_rows: int
 
 
-async def get_trades(info: GenieInfo, page: int, count: int, symbol: str) -> Response:
+async def get_trades(info: GenieInfo, page: int, count: int, symbol: Union[str, None] = None) -> Response:
     with info.context.session_factory.begin() as session:
         trades, total_rows = query_trades(session, Paginator(page=page, count=count), symbol)
         return Response(

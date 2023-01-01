@@ -1,6 +1,7 @@
 import strawberry
 
 from .asset import get_assets
+from .trade import get_trades
 from .user import get_users
 
 
@@ -8,6 +9,7 @@ from .user import get_users
 class Management:
     users = strawberry.field(resolver=get_users)
     assets = strawberry.field(resolver=get_assets)
+    trades = strawberry.field(resolver=get_trades)
 
 
 @strawberry.type
